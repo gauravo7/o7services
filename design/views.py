@@ -6,3 +6,7 @@ from django.conf.urls.static import static
 
 def index(request):
     return render(request,"design/index.html")
+def about(request):
+    return render(request,"design/about.html")
+def contact(request):
+    return render(request,"design/contact.html")
