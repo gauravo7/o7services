@@ -2,7 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 
 from django.conf.urls.static import static
-from . import models
+from . models import Staff
 
 # Create your views here.
 
@@ -15,9 +15,12 @@ def contact(request):
 def form(request):
     return render(request,"design/form.html")
 def formsubmit(request):
-    obj = models.Staff()
+    obj = Staff()
     obj.name = request.POST['name']
     obj.email = request.POST['email'] 
     obj.password = request.POST['password']
     obj.save()
     return redirect("form")
+def viewall(request):
+    a = Staff.objects.all()
+    return render(request,"design/viewall.html",{"data":a})
