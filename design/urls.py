@@ -7,6 +7,7 @@ urlpatterns = [
     path('form',views.form,name="form"),
     path('formsubmit',views.formsubmit,name="formsubmit"),
     path('viewall',views.viewall,name="viewall"),
+    path('dbselector',views.dbselector,name="dbselector"),
 
 
 ]

@@ -24,3 +24,14 @@ def formsubmit(request):
 def viewall(request):
     a = Staff.objects.all()
     return render(request,"design/viewall.html",{"data":a})
+
+# def dbselector(request):
+#     a = Staff.objects.get(pk=2)
+#     print(a.name)
+#     return HttpResponse(a.name)
+def dbselector(request):
+    a = Staff.objects.filter(password='123')
+    temp=""
+    for i in a:
+        temp += i.name+"<br/>"
+    return HttpResponse(temp)

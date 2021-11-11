@@ -125,7 +125,6 @@ STATICFILES_DIR=[
     os.path.join(BASE_DIR,'/design/static')
     
 ]
-print(BASE_DIR)
 STATIC_ROOT= os.path.join(BASE_DIR,'static')
 
 
