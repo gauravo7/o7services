@@ -35,3 +35,22 @@ def dbselector(request):
     for i in a:
         temp += i.name+"<br/>"
     return HttpResponse(temp)
+
+def search(request):
+    if(request.method=="GET"):
+        return render(request,"design/search.html")
+    else:
+        obj = Staff.objects.get(pk=request.POST['id'])
+        return render(request,"design/single.html",{"data":obj})
+def search2(request):
+    obj = Staff.objects.get(pk=request.GET['id'])
+    return render(request,"design/single.html",{"data":obj})
+def update(request):
+    if(request.method=="GET"):
+        return redirect(search)
+    else:
+        obj = Staff.objects.get(pk=request.POST['id'])
+        obj.name = request.POST['name']
+        obj.password = request.POST['password']
+        obj.save()
+        return redirect(viewall)
