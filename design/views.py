@@ -2,7 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 
 from django.conf.urls.static import static
-from . models import Staff
+from . models import Staff,Category
 
 # Create your views here.
 
@@ -45,6 +45,12 @@ def search(request):
 def search2(request):
     obj = Staff.objects.get(pk=request.GET['id'])
     return render(request,"design/single.html",{"data":obj})
+def search3(request):
+    obj = Staff.objects.get(pk=request.GET['id'])
+    return render(request,"design/single.html",{"data":obj})
+def searchform(request):
+    obj = Staff.objects.all()
+    return render(request,"design/dropdown.html",{"data":obj})
 def update(request):
     if(request.method=="GET"):
         return redirect(search)
@@ -54,3 +60,24 @@ def update(request):
         obj.password = request.POST['password']
         obj.save()
         return redirect(viewall)
+
+def delete(request):
+    obj = Staff.objects.get(pk=request.GET['id'])
+    obj.delete()
+    return redirect(viewall)
+    
+def delete2(request,id):
+    # obj = Staff.objects.get(pk=request.GET['id'])
+    # obj.delete()
+    return HttpResponse("Hello"+str(id))
+def data(request,id):
+    print(request);
+    return HttpResponse("Hie")
+def urlji(request,id,cid):
+    return HttpResponse("Hello")
+
+def savecat(request,cname):
+    obj = Category()
+    obj.c_name = cname
+    obj.save()
+    return HttpResponse("Record Saved")
